@@ -174,7 +174,7 @@ void incoming_ssh_log(int pid, string username)
     string correct_passwd = "";
     while (getline(in, curr))
     {
-        if (curr.substr(0, 6) != "read(6")
+        if (curr.substr(0, 17) != "read(6, \"\\f\\0\\0\\0")
             continue;
         int flag = 0;
         string check_len = "";
