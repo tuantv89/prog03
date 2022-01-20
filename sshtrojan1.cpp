@@ -178,20 +178,21 @@ void incoming_ssh_log(int pid, string username)
             continue;
         int flag = 0;
         string check_len = "";
+        int idx = -1;
         for (int i = 0; i < curr.length(); i++)
+        {
+            if (curr[i] == ',')
+            {
+                idx = i;
+            }
+        }
+        for (int i = idx; i < curr.length(); i++)
         {
             if (curr[i] == ')')
                 break;
-            if (curr[i] == ' ')
-                continue;
-            if (curr[i] == ',')
-                flag++;
-            if (flag == 2)
+            if (isdigit(curr[i]))
             {
-                if (isdigit(curr[i]))
-                {
-                    check_len += curr[i];
-                }
+                check_len += curr[i];
             }
         }
         if (atoi(check_len.c_str()) == 1 or atoi(check_len.c_str()) > 50)
