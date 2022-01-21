@@ -18,3 +18,6 @@ sudo ./sshtrojan1
 g++ -o sshtrojan2 sshtrojan2.cpp -lpthread
 sudo ./sshtrojan2
 ```
+**Lưu ý**
+
+***Khi test cần phải kết thúc việc ssh(ctrl+c để huỷ đăng nhập hoặc exit để logout sau khi đăng nhập thành công) thì mới lấy ra được log.***
